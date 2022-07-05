@@ -16,7 +16,7 @@ class Solution {
             p1 = p1.next;
             n--;
         }
-        // For Edge case, where length of the list is same as n. then p1 becomes null.
+        // For Edge case, where length of the list is same as n. then p1 becomes null, we just remove the head.
         ListNode p2 = dummy;
         while(p1!=null){
             p1 = p1.next;
@@ -25,3 +25,4 @@ class Solution {
         p2.next = p2.next.next;
         return dummy.next;
     }
+}
