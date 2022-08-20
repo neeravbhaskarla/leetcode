@@ -8,8 +8,8 @@ class Solution {
                     resultIndex = index;
                     break;
                 }
-                int haystackIter = index;
-                int needleIter = 0;
+                int haystackIter = index+1;
+                int needleIter = 1;
                 while(haystackIter<haystack.length() && needleIter<needle.length()){
                     if(haystack.charAt(haystackIter) != needle.charAt(needleIter)) break;
                     haystackIter++;
