@@ -1,65 +1,50 @@
 class Solution {
-    HashSet<String> visited = new HashSet<>();
-    Map<String, List<String>> adjacent = new HashMap<String, List<String>>();
+    Set<String> visited = new HashSet<>();
+    Map<String, List<String>> adjacent = new HashMap<>();
     
-    private void DFS(List<String> mergedAccount, String email) {
-        visited.add(email);
-        // Add the email vector that contains the current component's emails
+    public void DFS(List<String> mergedAccount, String email){
         mergedAccount.add(email);
+        visited.add(email);
         
-        if (!adjacent.containsKey(email)) {
-            return;
-        }
+        if(!adjacent.containsKey(email)) return;
         
-        for (String neighbor : adjacent.get(email)) {
-            if (!visited.contains(neighbor)) {
-                DFS(mergedAccount, neighbor);
-            }
-        }
+        for(String emailAccount: adjacent.get(email))
+            if(!visited.contains(emailAccount))
+                DFS(mergedAccount, emailAccount);
     }
-    
-    public List<List<String>> accountsMerge(List<List<String>> accountList) {
-        int accountListSize = accountList.size();
-        
-        for (List<String> account : accountList) {
-            int accountSize = account.size();
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        for(List<String> account: accounts){
+            String firstUserEmail = account.get(1);
             
-            // Building adjacency list
-            // Adding edge between first email to all other emails in the account
-            String accountFirstEmail = account.get(1);
-            for (int j = 2; j < accountSize; j++) {
-                String accountEmail = account.get(j);
+            int accountSize = account.size();
+            for(int i = 2; i<accountSize; i++){
+                String currentEmail = account.get(i);
                 
-                if (!adjacent.containsKey(accountFirstEmail)) {
-                    adjacent.put(accountFirstEmail, new ArrayList<String>());
-                }
-                adjacent.get(accountFirstEmail).add(accountEmail);
+                if(!adjacent.containsKey(firstUserEmail)) adjacent.put(firstUserEmail, new ArrayList<String>());
                 
-                if (!adjacent.containsKey(accountEmail)) {
-                    adjacent.put(accountEmail, new ArrayList<String>());
-                }
-                adjacent.get(accountEmail).add(accountFirstEmail);
+                adjacent.get(firstUserEmail).add(currentEmail);
+                
+                if(!adjacent.containsKey(currentEmail)) adjacent.put(currentEmail, new ArrayList<String>());
+                
+                adjacent.get(currentEmail).add(firstUserEmail);
             }
         }
         
-        // Traverse over all th accounts to store components
         List<List<String>> mergedAccounts = new ArrayList<>();
-        for (List<String> account : accountList) {
-            String accountName = account.get(0);
+        for(List<String> account: accounts){
+            String firstName = account.get(0);
             String accountFirstEmail = account.get(1);
             
-            // If email is visited, then it's a part of different component
-            // Hence perform DFS only if email is not visited yet
-            if (!visited.contains(accountFirstEmail)) {
+            if(!visited.contains(accountFirstEmail)){
                 List<String> mergedAccount = new ArrayList<>();
-                // Adding account name at the 0th index
-                mergedAccount.add(accountName);
+                mergedAccount.add(firstName);
                 
-                DFS(mergedAccount, accountFirstEmail);
-                Collections.sort(mergedAccount.subList(1, mergedAccount.size())); 
+                DFS(mergedAccount, accountFirstEmail);    
+                Collections.sort(mergedAccount.subList(1, mergedAccount.size()));
                 mergedAccounts.add(mergedAccount);
             }
         }
+        
         
         return mergedAccounts;
     }
