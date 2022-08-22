@@ -22,11 +22,10 @@ class Solution {
         }
     }
     public ListNode mergeKLists(ListNode[] lists) {
-        if(lists.length==0) return null;
-        ListNode result = lists[0];
+        if(lists.length == 0) return null;
         for(int i=1; i<lists.length; i++){
-            result = mergeTwoLists(result, lists[i]);
+            lists[0] = mergeTwoLists(lists[0], lists[i]);
         }
-        return result;
+        return lists[0];
     }
 }
