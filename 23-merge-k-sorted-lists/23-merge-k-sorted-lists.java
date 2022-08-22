@@ -23,8 +23,12 @@ class Solution {
     }
     public ListNode mergeKLists(ListNode[] lists) {
         if(lists.length == 0) return null;
-        for(int i=1; i<lists.length; i++){
-            lists[0] = mergeTwoLists(lists[0], lists[i]);
+        int interval = 1;
+        while(interval<lists.length){
+            for(int i=0; i+interval<lists.length; i = i+interval*2){
+                lists[i] = mergeTwoLists(lists[i], lists[i+interval]);
+            }   
+            interval*=2;
         }
         return lists[0];
     }
