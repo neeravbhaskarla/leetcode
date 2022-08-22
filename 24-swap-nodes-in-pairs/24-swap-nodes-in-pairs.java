@@ -16,9 +16,7 @@ class Solution {
         ListNode prev = null;
         while(head!=null && head.next!=null){
             if(count%2!=0){
-                if(count==1){
-                    dummy.next = head.next;
-                }
+                if(count==1) dummy.next = head.next;
                 ListNode nextNode = head.next;
                 head.next = nextNode.next;
                 nextNode.next = head;  
