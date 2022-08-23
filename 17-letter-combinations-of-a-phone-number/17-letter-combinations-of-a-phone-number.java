@@ -1,33 +1,28 @@
 class Solution {
+    private List<String> combinations = new ArrayList<>();
+    private Map<Character, String> letters = Map.of(
+        '2', "abc", '3', "def", '4', "ghi", '5', "jkl", 
+        '6', "mno", '7', "pqrs", '8', "tuv", '9', "wxyz");
+    private String phoneDigits;
     public List<String> letterCombinations(String digits) {
-        if(digits.length() == 0) return new ArrayList<>();
-        Map<Integer, List<String>> numpad = new HashMap<>();
+        if(digits.length() == 0) return combinations;
+        phoneDigits = digits;
         
-        numpad.put(1, new ArrayList<>());
-        numpad.put(2, Arrays.asList("a", "b", "c"));
-        numpad.put(3, Arrays.asList("d", "e", "f"));
-        numpad.put(4, Arrays.asList("g", "h", "i"));
-        numpad.put(5, Arrays.asList("j", "k", "l"));
-        numpad.put(6, Arrays.asList("m", "n", "o"));
-        numpad.put(7, Arrays.asList("p", "q", "r", "s"));
-        numpad.put(8, Arrays.asList("t", "u", "v"));
-        numpad.put(9, Arrays.asList("w", "x", "y", "z"));
-        
-        List<String> result = new ArrayList<>();
-        for(String ch: numpad.get(digits.charAt(0) - '0')) result.add(ch);
-        for(int i=1; i<digits.length(); i++){
-                int resultLen = result.size();
-                for(String ch: numpad.get(digits.charAt(i) - '0')){
-                    for(int j=0; j<resultLen; j++){
-                        String st = "";
-                        st+=result.get(j)+ch;
-                        result.add(st);
-                    }
-                }
+        backtrack(0, new StringBuilder());
+        return combinations;
+    }
+    
+    public void backtrack(int index, StringBuilder path){
+        if(path.length() == phoneDigits.length()){
+            combinations.add(path.toString());
+            return;
         }
-        if(digits.length() == 1) return result;
-        List<String> perfectResult = new ArrayList<>();
-        for(int i=0; i<result.size(); i++) if(result.get(i).length() == digits.length()) perfectResult.add(result.get(i));
-        return perfectResult;
+        
+        String possibleLetters = letters.get(phoneDigits.charAt(index));
+        for(char letter: possibleLetters.toCharArray()){
+            path.append(letter);
+            backtrack(index+1, path);
+            path.deleteCharAt(path.length() -1);
+        }
     }
 }
