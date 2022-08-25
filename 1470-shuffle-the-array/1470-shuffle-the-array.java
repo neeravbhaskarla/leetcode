@@ -5,12 +5,8 @@ class Solution {
         int first = 0;
         int second = 0;
         for(int i=0; i<nums.length; i++){
-            if(i%2 == 0){
-                nums[i] = firstPart[first++];
-            }
-            else{
-                nums[i] = secondPart[second++];
-            }
+            if(i%2 == 0) nums[i] = firstPart[first++];
+            else nums[i] = secondPart[second++];
         }
         return nums;
     }
