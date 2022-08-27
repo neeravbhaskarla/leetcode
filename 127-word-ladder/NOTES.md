@@ -1,0 +1,1 @@
+Used BFS because, If we traverse through BFS Approach if we get endWord during traversal the first neigbour to reach will always be the shortest.
