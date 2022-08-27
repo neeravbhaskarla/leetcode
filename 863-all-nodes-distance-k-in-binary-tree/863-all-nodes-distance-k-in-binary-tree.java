@@ -11,7 +11,6 @@ class Solution {
     private Map<TreeNode, TreeNode> parent = new HashMap<>();
     
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        
         dfs(root, null);
         Set<TreeNode> seen = new HashSet<>();
         Queue<TreeNode> queue = new LinkedList<>();
@@ -22,9 +21,7 @@ class Solution {
         int dist = 0;
         while(!queue.isEmpty()){
             
-            if(dist == k){
-                return createListFromQueue(queue);
-            }
+            if(dist == k) break;
             
             int size = queue.size();
             
@@ -47,17 +44,13 @@ class Solution {
             dist++;
         }
         
-        return new ArrayList<>();
-    }
-    
-    public List<Integer> createListFromQueue(Queue<TreeNode> queue){
-        List<Integer> list = new ArrayList<>();
+        List<Integer> resultList = new ArrayList<>();
         
         while(queue.size()>0){
-            list.add(queue.remove().val);
+            resultList.add(queue.remove().val);
         }
         
-        return list;
+        return resultList;
     }
     
     private void dfs(TreeNode node, TreeNode parentNode){
