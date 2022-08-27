@@ -46,7 +46,7 @@ class Solution {
         
         List<Integer> resultList = new ArrayList<>();
         
-        while(queue.size()>0){
+        while(!queue.isEmpty()){
             resultList.add(queue.remove().val);
         }
         
