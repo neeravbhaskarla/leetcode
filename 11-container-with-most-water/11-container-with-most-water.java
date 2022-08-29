@@ -9,7 +9,9 @@ class Solution {
             int l;
             if(height[left]<height[right]) l = height[left++];
             else l = height[right--];
-            maxArea = Math.max(maxArea, l*b);
+            if(maxArea<l*b){
+                maxArea = l*b;
+            }
         }
         
         return maxArea;
