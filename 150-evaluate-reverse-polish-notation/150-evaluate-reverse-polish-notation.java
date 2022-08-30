@@ -6,22 +6,12 @@ class Solution {
                 if(stack.isEmpty()) continue;
                 int operand1 = stack.pop();
                 int operand2 = stack.pop();
-                if(str.equals("+")){
-                    stack.push(operand2+operand1);
-                }
-                if(str.equals("-")){
-                    stack.push(operand2-operand1);
-                }
-                if(str.equals("*")){
-                    stack.push(operand2*operand1);
-                }
-                if(str.equals("/")){
-                    stack.push(operand2/operand1);
-                }
+                if(str.equals("+")) stack.push(operand2+operand1);
+                if(str.equals("-")) stack.push(operand2-operand1);
+                if(str.equals("*")) stack.push(operand2*operand1);
+                if(str.equals("/")) stack.push(operand2/operand1);
             }
-            else{
-                stack.push(Integer.valueOf(str));
-            }
+            else stack.push(Integer.valueOf(str));
         }
         return stack.pop();
     }
