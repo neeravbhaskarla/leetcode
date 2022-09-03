@@ -1,27 +1,31 @@
 class Solution {
     public int[] numsSameConsecDiff(int n, int k) {
-        if(n == 0){
+        if(n==0)
             return new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        
+        List<Integer> result = new ArrayList<>();
+        for(int firstDigit = 1; firstDigit<=9; firstDigit++)
+            dfs(n-1, firstDigit, k, result);
+        
+        return result.stream().mapToInt(i->i).toArray();
+    }
+    
+    public void dfs(int digitCount, int num, int k, List<Integer> result){
+        if(digitCount == 0){
+            result.add(num);
+            return;
         }
         
-        List<Integer> queue = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
-        for(int i=1; i<n; i++){
-            List<Integer> newQueue = new ArrayList<>();
-            for(int digit: queue){
-                int tailNode = digit%10;
-                List<Integer> possibleDigit = new ArrayList<>();
-                possibleDigit.add(tailNode+k);
-                if(k!=0)
-                    possibleDigit.add(tailNode-k);
-                for(int currDigit: possibleDigit){
-                    if(currDigit>=0 && currDigit<=9){
-                        int num = digit * 10 + currDigit;
-                        newQueue.add(num);
-                    }
-                }
+        int tailDigit = num%10;
+        List<Integer> possibleDigits = new ArrayList<>();
+        possibleDigits.add(tailDigit+k);
+        if(k!=0)
+            possibleDigits.add(tailDigit-k);
+        for(int digit: possibleDigits){
+            if(digit>=0 && digit<=9){
+                int number = num*10 + digit;
+                dfs(digitCount-1, number, k, result);
             }
-            queue = newQueue;
         }
-        return queue.stream().mapToInt(i->i).toArray();
     }
 }
