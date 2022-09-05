@@ -14,6 +14,9 @@ class Solution {
                 current_tank = 0;
             }
         }
-        return total_tank>=0?start_pos: -1;
+        if(total_tank>=0)
+            return start_pos;
+        else
+            return -1;
     }
 }
