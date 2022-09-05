@@ -7,7 +7,7 @@ class Solution {
         for(int num: freqMap.keySet()){
             if(freqMap.get(num)<2) 
                 return -1;
-            rounds+=(freqMap.get(num) + 2)/3;
+            rounds = rounds + (freqMap.get(num) + 2)/3;
         }
         return rounds;
     }
