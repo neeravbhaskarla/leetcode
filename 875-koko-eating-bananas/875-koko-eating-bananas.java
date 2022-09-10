@@ -10,6 +10,7 @@ class Solution {
             int hourSpent = 0;
             for(int pile: piles){
                 hourSpent+=Math.ceil((double)pile/middle);
+                if(hourSpent>h) break;
             }
             if(hourSpent<=h){
                 right = middle;
