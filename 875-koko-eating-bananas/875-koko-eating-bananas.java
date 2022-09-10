@@ -7,12 +7,7 @@ class Solution {
         
         while(left<right){
             int middle = (left+right)/2;
-            int hourSpent = 0;
-            for(int pile: piles){
-                hourSpent+=Math.ceil((double)pile/middle);
-                if(hourSpent>h) break;
-            }
-            if(hourSpent<=h){
+            if(isPossible(piles, middle, h)){
                 right = middle;
             }
             else{
@@ -20,5 +15,13 @@ class Solution {
             }
         }
         return right;
+    }
+    public boolean isPossible(int[] piles, int middle, int h){
+        int hourSpent = 0;
+        for(int pile: piles){
+            hourSpent+=Math.ceil((double)pile/middle);
+            if(hourSpent>h) return false;
+        }
+        return true;
     }
 }
