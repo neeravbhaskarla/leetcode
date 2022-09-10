@@ -16,12 +16,11 @@ class Solution {
         }
         return left;
     }
-    public boolean isPossible(int[] piles, int middle, int h){
+    public boolean isPossible(int[] piles, int k, int h){
         int hourSpent = 0;
         for(int pile: piles){
-            hourSpent+=Math.ceil((double)pile/middle);
-            if(hourSpent>h) return false;
+            hourSpent+=Math.ceil((double)pile/k);
         }
-        return true;
+        return hourSpent<=h;
     }
 }
