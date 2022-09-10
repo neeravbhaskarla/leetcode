@@ -10,35 +10,18 @@ class Solution {
         }
         
         int left = 0;
-        int right = arr.length;
-        int mid = 0;
+        int right = arr.length-k;
         while(left<right){
-            mid = (left+right)/2;
-            if(arr[mid] >= x){
-                right = mid;
-            }
-            else if(arr[mid]>x){
-                right = mid;
+            int mid = (left+right)/2;
+            if(x - arr[mid] > arr[mid+k]-x){
+                left = mid+1;
             }
             else{
-                left = mid+1;
+                right = mid;
             }
         }
         
-        left-=1;
-        right = left+1;
-        while (right - left - 1 < k) {
-            if (left == -1) {
-                right += 1;
-                continue;
-            }
-            if (right == arr.length || Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) {
-                left -= 1;
-            } else {
-                right += 1;
-            }
-        } 
-        for(int i=left+1; i<right; i++){
+        for(int i=left; i<left+k; i++){
             result.add(arr[i]);
         }
         return result;
