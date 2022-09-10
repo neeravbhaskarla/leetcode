@@ -15,13 +15,22 @@ class Solution {
     public int pickIndex() {
         double target = this.totalSum * Math.random();
         
-        int j = 0;
-        for(; j<this.prefixSums.length; j++){
-            if(target < this.prefixSums[j])
-                return j;
-        }
+//         int j = 0;
+//         for(; j<this.prefixSums.length; j++){
+//             if(target < this.prefixSums[j])
+//                 return j;
+//         }
         
-        return j-1;
+//         return j-1;
+        int left = 0, right = this.prefixSums.length;
+        while(left<right){
+            int mid = left + (right - left)/2;
+            if(target > this.prefixSums[mid])
+                left = mid+1;
+            else
+                right = mid; 
+        }
+        return left;
     }
 }
 
