@@ -10,8 +10,7 @@ class WordDictionary {
         WordDictionary pCrawl = this;
         for(int level = 0; level<word.length(); level++){
             int index = word.charAt(level) - 'a';
-            if(pCrawl.children[index]==null) 
-                pCrawl.children[index] = new WordDictionary();
+            if(pCrawl.children[index]==null) pCrawl.children[index] = new WordDictionary();
             pCrawl = pCrawl.children[index];
         }
         pCrawl.isEnd = true;
@@ -21,16 +20,12 @@ class WordDictionary {
         WordDictionary pCrawl = this;
         for(int i=0; i<word.length(); i++){
             if(word.charAt(i) == '.'){
-                for(WordDictionary ch: pCrawl.children){
-                    if(ch!=null && ch.search(word.substring(i+1))){
-                        return true;
-                    }
-                }
+                for(WordDictionary ch: pCrawl.children)
+                    if(ch!=null && ch.search(word.substring(i+1))) return true;
                 return false;
             }
             int index = word.charAt(i) - 'a';
-            if(pCrawl.children[index]==null) 
-                return false;
+            if(pCrawl.children[index]==null) return false;
             pCrawl = pCrawl.children[index];
         }
         return pCrawl.isEnd;
