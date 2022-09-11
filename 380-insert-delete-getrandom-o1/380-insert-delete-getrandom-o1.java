@@ -8,20 +8,27 @@ class RandomizedSet {
     }
     
     public boolean insert(int val) {
-        if(dict.containsKey(val)) return false;
+        if(dict.containsKey(val)) 
+            return false;
         dict.put(val, list.size());
         list.add(list.size(), val);
         return true;
     }
     
     public boolean remove(int val) {
-        if(!dict.containsKey(val)) return false;
-        int lastElement = list.get(list.size()-1);
-        int idx = dict.get(val);
-        list.set(idx, lastElement);
-        dict.put(lastElement, idx);
-        list.remove(list.size() - 1);
+        if(!dict.containsKey(val)) 
+            return false;
+        int index = dict.get(val);
         dict.remove(val);
+            
+        int lastIndex = list.size()-1;
+        int lastElement = list.get(lastIndex);
+        
+        if(lastIndex!=index){
+            list.set(index, lastElement);
+            dict.put(lastElement, index);   
+        }
+        list.remove(lastIndex);
         return true;
     }
     
