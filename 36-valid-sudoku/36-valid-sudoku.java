@@ -1,27 +1,34 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
         int N = 9;
-        Map<Integer, Set<Integer>> rows = new HashMap<>();
-        Map<Integer, Set<Integer>> cols = new HashMap<>();
-        Map<Integer, Set<Integer>> squares = new HashMap<>();
-        
-        for(int idx=0; idx<N; idx++){
-            rows.put(idx, new HashSet<Integer>());
-            cols.put(idx, new HashSet<Integer>());
-            squares.put(idx, new HashSet<Integer>());
-        }
-        for(int row = 0; row<N; row++){
-            for(int col = 0; col<N; col++){
-                if(board[row][col]!='.'){
-                    int val = board[row][col] - '0';
-                    if(rows.get(row).contains(val) ||
-                       cols.get(col).contains(val) ||
-                       squares.get((row/3) * 3+col/3).contains(val))
-                        return false;
-                    rows.get(row).add(val);
-                    cols.get(col).add(val);
-                    squares.get((row/3) * 3 +col/3).add(val);
+
+        int[] rows = new int[N];
+        int[] cols = new int[N];
+        int[] boxes = new int[N];
+
+        for (int r = 0; r < N; r++) {
+            for (int c = 0; c < N; c++) {
+                if (board[r][c] == '.') {
+                    continue;
                 }
+                int val = board[r][c] - '0';
+                int pos = 1 << (val - 1);
+
+                if ((rows[r] & pos) > 0) {
+                    return false;
+                }
+                rows[r] |= pos;
+
+                if ((cols[c] & pos) > 0) {
+                    return false;
+                }
+                cols[c] |= pos;
+
+                int idx = (r / 3) * 3 + c / 3;
+                if ((boxes[idx] & pos) > 0) {
+                    return false;
+                }
+                boxes[idx] |= pos;
             }
         }
         return true;
