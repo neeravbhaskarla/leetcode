@@ -2,18 +2,22 @@ class Solution {
     public int bagOfTokensScore(int[] tokens, int P) {
         Arrays.sort(tokens);
         int low = 0, high = tokens.length-1;
-        int ans = 0, points = 0;
-        while(low<=high && (P>=tokens[low] || points>0)){
-            while(low<=high && P>=tokens[low]){
-                P-=tokens[low++];
-                points++;
+        int score = 0, points = 0;
+        while(low<=high){
+            if(P>=tokens[low]){
+                P-=tokens[low];
+                score++;
+                low++;
             }
-            ans = Math.max(ans, points);
-            if(low<=high && points>0){
-                P+=tokens[high--];
-                points--;
+            else if(score>0 && low<high){
+                P+=tokens[high];
+                score--;
+                high--;
+            }
+            else{
+                break;
             }
         }
-        return ans;
+        return score;
     }
 }
