@@ -14,7 +14,11 @@ class Solution {
         }
         List<String> ans=new ArrayList<>();
         for(String s:mp.keySet()){
-            ans.add(""+mp.get(s)+" "+s);
+            StringBuilder sb=new StringBuilder();
+            sb.append(mp.get(s));
+            sb.append(" ");
+            sb.append(s);
+            ans.add(sb.toString());
         }
         return ans;
     }
