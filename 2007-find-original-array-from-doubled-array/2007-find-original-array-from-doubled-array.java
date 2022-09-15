@@ -1,27 +1,33 @@
 class Solution {
     public int[] findOriginalArray(int[] changed) {
-        if(changed.length%2 == 1){
-            return new int[0];
-        }
+        if(changed.length%2 == 1) return new int[0];
         
-        Map<Integer, Integer> freq = new HashMap<>();
+        int maxValue = 0;
         for(int num: changed){
-            freq.put(num, freq.getOrDefault(num, 0)+1);
+            maxValue = Math.max(maxValue, num);
+        }
+        int[] freq = new int[2*maxValue + 1];
+        
+        Arrays.fill(freq, 0);
+        
+        for(int num: changed){
+            freq[num]++;
         }
         int index = 0;
-        Arrays.sort(changed);
-        int[] result = new int[changed.length / 2];
-        for(int num: changed){
-            if(freq.get(num)>0){
-                int twice = num*2;
-                if(freq.containsKey(twice) && freq.get(twice)>0){
-                    result[index++] = num;
-                    freq.put(twice, freq.get(twice) - 1);
+        int[] result = new int[changed.length/2];
+        for(int num = 0; num<freq.length; num++){
+            if(freq[num]>0){
+                int val = num;
+                int twice = val*2;
+                if(freq[twice]>0){
+                    freq[num]--;
+                    result[index++] = val;
+                    freq[twice]--; 
+                    num--;
                 }
                 else{
                     return new int[0];
                 }
-                freq.put(num, freq.get(num) - 1);
             }
         }
         return result;
