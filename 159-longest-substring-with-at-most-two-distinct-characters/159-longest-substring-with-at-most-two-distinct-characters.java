@@ -1,9 +1,11 @@
 class Solution {
     public int lengthOfLongestSubstringTwoDistinct(String s) {
+        int n = s.length();
+        if(n<3) return n;
         int left = 0, right = 0;
         int[] charset = new int[58];
         int maxLength = 0;
-        while(right<s.length()){
+        while(right<n){
             charset[s.charAt(right) - 'A']++;
             while(!distinct(charset)){
                 charset[s.charAt(left) - 'A']--;
