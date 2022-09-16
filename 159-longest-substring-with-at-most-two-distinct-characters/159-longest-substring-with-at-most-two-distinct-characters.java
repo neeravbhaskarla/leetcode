@@ -5,11 +5,9 @@ class Solution {
         int maxLength = 0;
         while(right<s.length()){
             charset[s.charAt(right) - 'A']++;
-            if(!distinct(charset)){
-                while(!distinct(charset)){
-                    charset[s.charAt(left) - 'A']--;
-                    left++;
-                }
+            while(!distinct(charset)){
+                charset[s.charAt(left) - 'A']--;
+                left++;
             }
             maxLength = Math.max(maxLength, right - left + 1);
             right++;
