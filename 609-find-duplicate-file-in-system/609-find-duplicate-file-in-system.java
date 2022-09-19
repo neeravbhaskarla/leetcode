@@ -1,6 +1,7 @@
 class Solution {
     public List<List<String>> findDuplicate(String[] paths) {
         HashMap<String, List<String>> map = new HashMap<>();
+        List<List<String>> res = new ArrayList<>();
         for(String path: paths){
             String[] values = path.split(" ");
             for(int i=1; i<values.length; i++){
@@ -11,7 +12,6 @@ class Solution {
                 map.put(name_cont[1], list);
             }
         }
-        List<List<String>> res = new ArrayList<>();
         for(String key: map.keySet()){
             if(map.get(key).size()>1)
                 res.add(map.get(key));
