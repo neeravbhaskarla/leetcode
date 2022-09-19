@@ -1,14 +1,18 @@
 class Solution {
     public double myPow(double x, int n) {
-        if(x == -1 && n<0 ) return x*-1;
-        if(x == 1 || x == -1) return x;
-        if(n==Integer.MAX_VALUE || n==Integer.MIN_VALUE) return 0;
-        double res = 1;
-        boolean sign = (n<0)?true:false;
-        n = Math.abs(n);
-        for(int i=0; i<n; i++){
-            res*=x;
+        long N = n;
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
         }
-        return sign?(1/res):res;
+        double ans = 1;
+        double current_product = x;
+        for (long i = N; i > 0; i /= 2) {
+            if ((i % 2) == 1) {
+                ans = ans * current_product;
+            }
+            current_product = current_product * current_product;
+        }
+        return ans;
     }
-}
+};
