@@ -1,15 +1,18 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Map<Integer, Integer> freq = new HashMap<>();
-        for(int num: nums) freq.put(num, freq.getOrDefault(num, 0)+1);
-        int maxCount = 0;
-        int maxElement = 0;
+        int count = 0;
+        int element = 0;
         for(int num: nums){
-            if(maxCount<freq.get(num)){
-                maxCount = freq.get(num);
-                maxElement = num;
+            if(count == 0){
+                element = num;
+            }
+            if(element == num){
+                count++;
+            }
+            else{
+                count--;
             }
         }
-        return maxElement;
+        return element;
     }
 }
