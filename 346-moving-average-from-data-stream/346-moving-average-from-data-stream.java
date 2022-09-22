@@ -14,7 +14,7 @@ class MovingAverage {
         }
         queue.add(val);
         sum+=val;
-        return (double) sum/this.queue.size();     
+        return sum*1.0/this.queue.size();     
     }
 }
 
