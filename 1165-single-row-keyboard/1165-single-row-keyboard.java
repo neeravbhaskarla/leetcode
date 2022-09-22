@@ -1,14 +1,14 @@
 class Solution {
     public int calculateTime(String keyboard, String word) {
-        Map<Character, Integer> map = new HashMap<>();
+        int[] charset = new int[26];
         for(int i=0; i<keyboard.length(); i++){
-            map.put(keyboard.charAt(i), i);
+            charset[keyboard.charAt(i) - 'a'] = i;
         }
         int result = 0;
         int prev = 0;
         for(char ch: word.toCharArray()){
-            result += Math.abs((map.get(ch)) - prev);
-            prev = map.get(ch);
+            result += Math.abs(charset[ch - 'a'] - prev);
+            prev = charset[ch - 'a'];
         }
         return result;
     }
