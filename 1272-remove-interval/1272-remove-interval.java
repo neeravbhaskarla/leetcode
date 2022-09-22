@@ -7,8 +7,10 @@ class Solution {
                 result.add(List.of(interval[0], interval[1]));
             }
             else{
-                if(interval[0]<start) result.add(List.of(interval[0], start));
-                if(interval[1]>end) result.add(List.of(end, interval[1]));
+                if(interval[0]<start) 
+                    result.add(List.of(interval[0], start));
+                if(interval[1]>end) 
+                    result.add(List.of(end, interval[1]));
             }
         }
         return result;
