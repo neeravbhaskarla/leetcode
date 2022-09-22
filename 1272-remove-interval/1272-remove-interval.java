@@ -4,11 +4,11 @@ class Solution {
         int start = toBeRemoved[0], end = toBeRemoved[1];
         for(int[] interval: intervals){
             if(interval[1]<=start || interval[0]>=end){
-                result.add(new ArrayList<>(Arrays.asList(interval[0], interval[1])));
+                result.add(List.of(interval[0], interval[1]));
             }
             else{
-                if(interval[0]<start) result.add(new ArrayList<>(Arrays.asList(interval[0], start)));
-                if(interval[1]>end) result.add(new ArrayList<>(Arrays.asList(end, interval[1])));
+                if(interval[0]<start) result.add(List.of(interval[0], start));
+                if(interval[1]>end) result.add(List.of(end, interval[1]));
             }
         }
         return result;
