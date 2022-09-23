@@ -4,10 +4,10 @@ class Solution {
         int length = 0;
         long result = 0;
         for (int i = 1; i <= n; i++) {
-            if (Math.pow(2, (int) (Math.log(i) / Math.log(2))) == i) {
+            if ((i & (i - 1)) == 0) {
                 length++;
             }
-            result = ((result * (int) Math.pow(2, length)) + i) % MOD;
+            result = ((result << length) | i) % MOD;
         }
         return (int) result;
     }
