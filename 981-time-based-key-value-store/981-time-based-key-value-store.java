@@ -5,7 +5,7 @@ class TimeMap {
     }
     
     public void set(String key, String value, int timestamp) {
-        if(hash.get(key) == null) hash.put(key, new TreeMap());
+        if(hash.get(key) == null) hash.put(key, new TreeMap<>());
         hash.get(key).put(timestamp, value);
     }
     
