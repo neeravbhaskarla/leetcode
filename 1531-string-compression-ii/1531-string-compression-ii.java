@@ -4,7 +4,6 @@ class Solution {
         int n = s.length();
         int[][] dp = new int[110][110];
         for (int i = 0; i <= n; i++) for (int j = 0; j <= n; j++) dp[i][j] = 9999;
-		// for (int[] i : dp) Arrays.fill(i, n); // this is a bit slower (100ms)
         dp[0][0] = 0;
         for(int i = 1; i <= n; i++) {
             for(int j = 0; j <= k; j++) {                
