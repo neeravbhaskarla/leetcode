@@ -1,12 +1,9 @@
 class Solution {
     public boolean checkIfPangram(String sentence) {
-        int[] charset = new int[26];
+        int charBits = 0;
         for(char ch: sentence.toCharArray()){
-            charset[ch - 'a']++;
+            charBits|=(1<<(ch-'a'));
         }
-        for(int i=0; i<26; i++){
-            if(charset[i] == 0) return false;
-        }
-        return true;
+        return (charBits&67108863)==67108863;
     }
 }
