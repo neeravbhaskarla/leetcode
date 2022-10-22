@@ -14,17 +14,10 @@
  * }
  */
 class Solution {
-    int maxLen = Integer.MIN_VALUE;
-    public void dfs(TreeNode node, int level){
-        if(node == null){
-            maxLen = Math.max(maxLen, level);
-            return;
-        }
-        dfs(node.left, level+1);
-        dfs(node.right, level+1);
-    }
     public int maxDepth(TreeNode root) {
-        dfs(root, 0);
-        return maxLen;
+        if(root == null) return 0;
+        int maxLeftDepth = maxDepth(root.left);
+        int maxRightDepth = maxDepth(root.right);
+        return Math.max(maxLeftDepth, maxRightDepth)+1;
     }
 }
