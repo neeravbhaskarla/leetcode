@@ -9,11 +9,12 @@ class Solution {
         return sum;
     }
     public boolean isHappy(int n) {
-        Set<Integer> set = new HashSet<>();
-        while(set.add(getSum(n))){
-            if(getSum(n) == 1) return true;
-            n = getSum(n);
+        int slow = n;
+        int fast = getSum(n);
+        while(fast!=1 && slow != fast){
+            slow = getSum(slow);
+            fast = getSum(getSum(fast));
         }
-        return false;
+        return fast == 1;
     }
 }
