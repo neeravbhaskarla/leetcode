@@ -6,7 +6,7 @@ class Solution {
     }
     public void moveZeroes(int[] nums) {
         int left = 0;
-        while(left<nums.length){
+        while(left<nums.length-1){
             if(nums[left] == 0){
                 int right = left+1;
                 while(right<nums.length && nums[right]==0) right++;
