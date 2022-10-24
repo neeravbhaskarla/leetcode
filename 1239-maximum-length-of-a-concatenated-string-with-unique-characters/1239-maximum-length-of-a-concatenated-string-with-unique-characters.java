@@ -7,11 +7,14 @@ class Solution {
             int subStringLen = sub.size();
             for(int i = 0; i<subStringLen; i++){
                 String newRes = sub.get(i) + word;
-                Set<Character> newResSet = new HashSet<>();
+                int charBit = 0;
+                boolean flag = false;
                 for(char ch: newRes.toCharArray()){
-                    newResSet.add(ch);
+                    int mask = (1<<(ch-'a'))&charBit;
+                    if( mask > 0) flag = true; 
+                    charBit|=(1<<(ch - 'a'));
                 }
-                if(newResSet.size()!=newRes.length()) continue;
+                if(flag) continue;
                 sub.add(newRes);
                 maxLen = Math.max(maxLen, newRes.length());
             }
