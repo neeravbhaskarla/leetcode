@@ -1,1 +1,2 @@
-​
+First we check that both root nodes are equal or not, if they are equal then we need to find another subcase, which is if they have child nodes, left tree right child node must be equal to right tree left child node and right tree left child node must be equal to left tree right child node.
+The correponding operation will be done using recursion where we check if root nodes are equal for left and right tree, left right and right left is mirror and right left and left right is a mirror.
