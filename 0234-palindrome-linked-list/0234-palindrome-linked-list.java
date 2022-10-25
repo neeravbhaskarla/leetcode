@@ -26,7 +26,7 @@ class Solution {
             p2 = p2.next;
         }
         
-        middle.next = revList(reversedNode);
+        // middle.next = revList(reversedNode);
         return flag;
     }
     public ListNode revList(ListNode node){
