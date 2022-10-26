@@ -18,11 +18,6 @@ class Solution {
         }
         if(carry != 0 && index==-1){
             int[] copydigits = new int[digits.length+1];
-            index = digits.length-1;
-            int iter = digits.length;
-            while(iter>=0 && index>=0){
-                copydigits[iter--] = digits[index--];
-            }
             copydigits[0] = carry;
             digits = copydigits;
         }
