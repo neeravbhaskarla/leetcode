@@ -9,7 +9,7 @@ class Solution {
         return true;
     }
     public int minMutation(String start, String end, String[] bank) {
-        Queue<Pair<String, List<String>>> queue = new LinkedList<>();
+        Queue<Pair<String, List<String>>> queue = new ArrayDeque();
         List<String> bankList = Arrays.asList(bank);
         queue.add(new Pair<String, List<String>>(start, bankList));
         int mutations = 0;
